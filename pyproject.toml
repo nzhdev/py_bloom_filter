@@ -3,10 +3,8 @@ name = "py-bloom-filter"
 version = "0.1.0"
 description = "A simple Bloom Filter"
 readme = "README.md"
-authors = [
-    { name = "nzh", email = "nzhangho@uwaterloo.ca" }
-]
-requires-python = ">=3.14"
+authors = [{ name = "nzh", email = "nzhangho@uwaterloo.ca" }]
+requires-python = ">=3.9"
 dependencies = []
 
 [build-system]
@@ -16,6 +14,7 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "pytest>=8.3.5",
+    "ruff>=0.11.10",
 ]
 
 [tool.pytest.ini_options]
