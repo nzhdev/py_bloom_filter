@@ -55,7 +55,7 @@ def test_empty_filter():
     assert not bf.contains("anything"), "Empty filter should not contain any element"
 
 
-@pytest.mark.parametrize("num_bits, num_hashes", [(-1, 3), (10, -5)])
+@pytest.mark.parametrize(("num_bits", "num_hashes"), [(-1, 3), (10, -5)])
 def test_invalid_sizes(num_bits, num_hashes):
     with pytest.raises(ValueError):
         BloomFilter(num_bits, num_hashes)
