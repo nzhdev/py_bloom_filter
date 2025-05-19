@@ -1,3 +1,6 @@
+from typing_extensions import override
+
+
 class BitVector:
     """
     Fixed-size array of bits backed by a bytearray for efficient storage.
@@ -18,8 +21,8 @@ class BitVector:
 
         if num_bits < 0:
             raise ValueError(f"expected `num_bits` to be >= 0, got: {num_bits}")
-        self._size = num_bits
-        self._inner = bytearray((num_bits + 7) // 8)
+        self._size: int = num_bits
+        self._inner: bytearray = bytearray((num_bits + 7) // 8)
 
     def size(self) -> int:
         """
@@ -73,5 +76,6 @@ class BitVector:
         else:
             self._inner[byte_index] &= ~(1 << bit_offset)
 
+    @override
     def __repr__(self) -> str:
         return f"BitVector(size={self._size}, bytearray={self._inner})"

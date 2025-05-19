@@ -1,4 +1,5 @@
 import pytest
+
 from py_bloom_filter import BloomFilter
 
 
@@ -7,7 +8,7 @@ def bf():
     return BloomFilter(100, 5)
 
 
-def test_insert_and_contains(bf):
+def test_insert_and_contains(bf: BloomFilter):
     items = ["foo", "bar", 42, (1, 2)]
     for item in items:
         bf.insert(item)
@@ -44,7 +45,7 @@ def test_not_inserted_items():
     )
 
 
-def test_insert_duplicates(bf):
+def test_insert_duplicates(bf: BloomFilter):
     bf.insert("repeat")
     bf.insert("repeat")
     assert bf.contains("repeat")
@@ -56,9 +57,9 @@ def test_empty_filter():
 
 
 @pytest.mark.parametrize(("num_bits", "num_hashes"), [(-1, 3), (10, -5)])
-def test_invalid_sizes(num_bits, num_hashes):
+def test_invalid_sizes(num_bits: int, num_hashes: int):
     with pytest.raises(ValueError):
-        BloomFilter(num_bits, num_hashes)
+        _ = BloomFilter(num_bits, num_hashes)
 
 
 def test_bit_vector_size():
@@ -73,9 +74,9 @@ def test_num_hashes():
     assert bf.num_hashes() == 9
 
 
-def test_repr_contains_bloom_filter(bf):
+def test_repr_contains_bloom_filter(bf: BloomFilter):
     assert "BloomFilter" in repr(bf), f"got: {repr(bf)}"
 
 
-def test_repr_contains_bit_vector(bf):
+def test_repr_contains_bit_vector(bf: BloomFilter):
     assert "BitVector" in repr(bf), f"got: {repr(bf)}"

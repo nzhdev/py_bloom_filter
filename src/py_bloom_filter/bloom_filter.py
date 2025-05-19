@@ -1,5 +1,8 @@
-from py_bloom_filter.bit_vector import BitVector
 from collections.abc import Hashable
+
+from typing_extensions import override
+
+from py_bloom_filter.bit_vector import BitVector
 
 
 class BloomFilter:
@@ -28,9 +31,9 @@ class BloomFilter:
             raise ValueError("expected num_bits to be >= 0")
         if num_hashes < 0:
             raise ValueError("expected num_hashes to be >= 0")
-        self._size = num_bits
-        self._bit_vector = BitVector(num_bits)
-        self._num_hashes = num_hashes
+        self._size: int = num_bits
+        self._bit_vector: BitVector = BitVector(num_bits)
+        self._num_hashes: int = num_hashes
 
     def size(self) -> int:
         """
@@ -96,5 +99,6 @@ class BloomFilter:
 
         return True
 
+    @override
     def __repr__(self) -> str:
         return f"BloomFilter(size={self._size}, BitVector={self._bit_vector!r}, num_hashes={self._num_hashes})"
