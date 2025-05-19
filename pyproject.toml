@@ -5,7 +5,9 @@ description = "A simple Bloom Filter"
 readme = "README.md"
 authors = [{ name = "nzh", email = "nzhangho@uwaterloo.ca" }]
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "typing-extensions>=4.13.2",
+]
 
 [build-system]
 requires = ["hatchling"]
